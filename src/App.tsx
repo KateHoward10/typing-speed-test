@@ -34,7 +34,9 @@ function App() {
     <div className="container">
       <p>{textToCopy}</p>
       <TextField onChange={e => setTextTyped(e.target.value)} />
-      <div style={{ color: textTyped === textToCopy ? 'green' : 'black'}}>{textTyped}</div>
+      <div>{textTyped.split(" ").map((word, index) => (
+        <span key={index} style={{ color: textToCopy.split(" ")[index] === word ? 'green' : 'red'}}> {word}</span>
+      ))}</div>
       <p>{time}</p>
       <button onClick={start}>Start</button>
     </div>
