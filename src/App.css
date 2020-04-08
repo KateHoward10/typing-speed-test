@@ -5,9 +5,16 @@
 
 textarea {
   width: 500px;
+  border: 3px solid hsl(136, 50%, 50%);
+  border-radius: 5px;
+  resize: none;
 }
 
 button {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
   font-size: 20px;
-  background-color: skyblue;
+  background-color: hsl(136, 60%, 40%);
+  color: #FFF;
 }

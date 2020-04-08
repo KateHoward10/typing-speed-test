@@ -8,10 +8,11 @@ function App() {
   const [textToCopy, setTextToCopy] = useState<string>("");
   const [textTyped, setTextTyped] = useState<string>("");
   const [timing, toggleTiming] = useState<boolean>(false);
-  const [time, setTime] = useState<number>(0);
+  const [time, setTime] = useState<number>(60);
 
   useInterval(() => {
-    setTime(time + 1);
+    setTime(time - 1);
+    if (time <= 1) toggleTiming(false);
   }, timing ? 1000 : null);
 
   useEffect(() => {
@@ -37,8 +38,9 @@ function App() {
       <div>{textTyped.split(" ").map((word, index) => (
         <span key={index} style={{ color: textToCopy.split(" ")[index] === word ? 'green' : 'red'}}> {word}</span>
       ))}</div>
-      <p>{time}</p>
+      <p>{Math.floor(time / 60)}:{time % 60 < 10 ? `0${time % 60}` : time % 60}</p>
       <button onClick={start}>Start</button>
+      <p>Words typed: {textTyped.split(" ").length}</p>
     </div>
   );
 }
