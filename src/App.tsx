@@ -33,14 +33,14 @@ function App() {
 
   return (
     <div className="container">
-      <p>{textToCopy}</p>
+      <p>{textToCopy.split(" ").map((word, index) => (
+        <span key={index} style={{ color: index === textTyped.split(" ").length - 1 ? 'green' : textTyped.split(" ")[index] === word ? 'grey' : 'black'}}> {word}</span>
+      ))}</p>
       <TextField onChange={e => setTextTyped(e.target.value)} />
-      <div>{textTyped.split(" ").map((word, index) => (
-        <span key={index} style={{ color: textToCopy.split(" ")[index] === word ? 'green' : 'red'}}> {word}</span>
-      ))}</div>
       <p>{Math.floor(time / 60)}:{time % 60 < 10 ? `0${time % 60}` : time % 60}</p>
       <button onClick={start}>Start</button>
-      <p>Words typed: {textTyped.split(" ").length}</p>
+      <p>Words typed: {textTyped.split(" ").length - 1}</p>
+      <p>Errors: {textTyped.split(" ").filter((word, index) => textToCopy.split(" ")[index] !== word).length}</p>
     </div>
   );
 }

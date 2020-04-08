@@ -5,9 +5,11 @@
 
 textarea {
   width: 500px;
+  height: 200px;
   border: 3px solid hsl(136, 50%, 50%);
   border-radius: 5px;
   resize: none;
+  font-size: 1rem;
 }
 
 button {
