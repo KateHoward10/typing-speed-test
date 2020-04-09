@@ -14,15 +14,16 @@ function App() {
 
   useInterval(() => {
     setTime(time - 1);
-    if (time <= 1) toggleTiming(false);
+    if (time <= 1) {
+      toggleTiming(false);
+    }
   }, timing ? 1000 : null);
 
   function getText() {
     axios.get(endpoint)
-      .then(response => {
-        console.log(response);
-        setTextToCopy(response.data);
-      })
+      .then(response => 
+        setTextToCopy(response.data)
+      )
   }
 
   function type(e: any) {
@@ -36,11 +37,11 @@ function App() {
     <div className="wrapper">
       <div className="box-container">
         <Box time>{Math.floor(time / 60)}:{time % 60 < 10 ? `0${time % 60}` : time % 60}</Box>
-        <Box>Words: {textTyped.split(" ").length - 1}</Box>
-        <Box>Errors: {textTyped.split(" ").filter((word, index) => textToCopy.split(" ")[index] !== word).length}</Box>
+        <Box>Words: {textTyped.split(" ").filter(word => word !== "").length}</Box>
+        <Box>Errors: {textTyped.split(" ").filter((word: string, index: number) => word !== "" && word !== textToCopy.split(" ")[index]).length}</Box>
       </div>
       <div className="text-container">
-        <div className="text-to-copy">{textToCopy.split(" ").map((word, index) => (
+        <div className="text-to-copy">{textToCopy.split(" ").map((word: string, index: number) => (
           <span key={index} style={{ color: index === textTyped.split(" ").length - 1 ? 'green' : textTyped.split(" ")[index] === word ? 'grey' : 'black'}}> {word}</span>
         ))}</div>
         <TextField onChange={type} />
