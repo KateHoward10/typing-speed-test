@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 import useInterval from './useInterval';
 import { TextField } from './Components/TextField';
 import { Box } from './Components/Box';
 
 function App() {
-  const endpoint = "http://www.randomtext.me/api/lorem/p-1/40";
+  const endpoint = "https://litipsum.com/api/5";
   const [textToCopy, setTextToCopy] = useState<string>("");
   const [textTyped, setTextTyped] = useState<string>("");
   const [timing, toggleTiming] = useState<boolean>(false);
@@ -17,11 +18,11 @@ function App() {
   }, timing ? 1000 : null);
 
   function getText() {
-    fetch(endpoint)
-      .then(blob => blob.json())
-      .then(data =>
-        setTextToCopy(data.text_out.replace(/(<([^>]+)>)/ig,""))
-      );
+    axios.get(endpoint)
+      .then(response => {
+        console.log(response);
+        setTextToCopy(response.data);
+      })
   }
 
   function type(e: any) {
@@ -39,9 +40,9 @@ function App() {
         <Box>Errors: {textTyped.split(" ").filter((word, index) => textToCopy.split(" ")[index] !== word).length}</Box>
       </div>
       <div className="text-container">
-        <p>{textToCopy.split(" ").map((word, index) => (
+        <div className="text-to-copy">{textToCopy.split(" ").map((word, index) => (
           <span key={index} style={{ color: index === textTyped.split(" ").length - 1 ? 'green' : textTyped.split(" ")[index] === word ? 'grey' : 'black'}}> {word}</span>
-        ))}</p>
+        ))}</div>
         <TextField onChange={type} />
       </div>
     </div>
