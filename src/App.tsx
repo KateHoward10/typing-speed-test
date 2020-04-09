@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import useInterval from './useInterval';
 import { TextField } from './Components/TextField';
+import { Box } from './Components/Box';
 
 function App() {
   const endpoint = "http://www.randomtext.me/api/lorem/p-1/40";
@@ -31,14 +32,18 @@ function App() {
   useEffect(getText, []);
 
   return (
-    <div className="container">
-      <p>{textToCopy.split(" ").map((word, index) => (
-        <span key={index} style={{ color: index === textTyped.split(" ").length - 1 ? 'green' : textTyped.split(" ")[index] === word ? 'grey' : 'black'}}> {word}</span>
-      ))}</p>
-      <TextField onChange={type} />
-      <p>{Math.floor(time / 60)}:{time % 60 < 10 ? `0${time % 60}` : time % 60}</p>
-      <p>Words typed: {textTyped.split(" ").length - 1}</p>
-      <p>Errors: {textTyped.split(" ").filter((word, index) => textToCopy.split(" ")[index] !== word).length}</p>
+    <div className="wrapper">
+      <div className="box-container">
+        <Box time>{Math.floor(time / 60)}:{time % 60 < 10 ? `0${time % 60}` : time % 60}</Box>
+        <Box>Words: {textTyped.split(" ").length - 1}</Box>
+        <Box>Errors: {textTyped.split(" ").filter((word, index) => textToCopy.split(" ")[index] !== word).length}</Box>
+      </div>
+      <div className="text-container">
+        <p>{textToCopy.split(" ").map((word, index) => (
+          <span key={index} style={{ color: index === textTyped.split(" ").length - 1 ? 'green' : textTyped.split(" ")[index] === word ? 'grey' : 'black'}}> {word}</span>
+        ))}</p>
+        <TextField onChange={type} />
+      </div>
     </div>
   );
 }
