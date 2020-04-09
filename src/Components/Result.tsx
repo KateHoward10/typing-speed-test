@@ -6,11 +6,14 @@ interface Props {
 }
 
 export const Result: React.FC<Props> = ({ words, errors }) => {
+  const accuracy = (words - errors) / words;
 
   return (
     <div className="overlay">
       <div className="modal">
-        {words - errors} WPM
+        <p>{words} words typed</p>
+        <p>{Math.floor(accuracy * 100)}% accuracy</p>
+        <p>Adjusted speed: {Math.floor(words * accuracy)} WPM</p>
       </div>
     </div>
   )
