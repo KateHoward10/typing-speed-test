@@ -4,6 +4,8 @@ import './App.css';
 import useInterval from './useInterval';
 import { TextField } from './Components/TextField';
 import { Box } from './Components/Box';
+import { Result } from './Components/Result';
+import { formatTime, numberOfWords, numberOfErrors } from './helpers';
 
 function App() {
   const endpoint = "https://litipsum.com/api/5";
@@ -11,11 +13,13 @@ function App() {
   const [textTyped, setTextTyped] = useState<string>("");
   const [timing, toggleTiming] = useState<boolean>(false);
   const [time, setTime] = useState<number>(60);
+  const [showResult, toggleShowResult] = useState<boolean>(false);
 
   useInterval(() => {
     setTime(time - 1);
     if (time <= 1) {
       toggleTiming(false);
+      toggleShowResult(true);
     }
   }, timing ? 1000 : null);
 
@@ -28,7 +32,7 @@ function App() {
 
   function type(e: any) {
     if (textTyped === "") toggleTiming(true);
-    setTextTyped(e.target.value);
+    if (timing) setTextTyped(e.target.value);
   }
 
   useEffect(getText, []);
@@ -36,9 +40,9 @@ function App() {
   return (
     <div className="wrapper">
       <div className="box-container">
-        <Box time>{Math.floor(time / 60)}:{time % 60 < 10 ? `0${time % 60}` : time % 60}</Box>
-        <Box>Words: {textTyped.split(" ").filter(word => word !== "").length}</Box>
-        <Box>Errors: {textTyped.split(" ").filter((word: string, index: number) => word !== "" && word !== textToCopy.split(" ")[index]).length}</Box>
+        <Box time>{formatTime(time)}</Box>
+        <Box>Words: {numberOfWords(textTyped)}</Box>
+        <Box>Errors: {numberOfErrors(textTyped, textToCopy)}</Box>
       </div>
       <div className="text-container">
         <div className="text-to-copy">{textToCopy.split(" ").map((word: string, index: number) => (
@@ -46,6 +50,7 @@ function App() {
         ))}</div>
         <TextField onChange={type} />
       </div>
+      {showResult && <Result words={numberOfWords(textTyped)} errors={numberOfErrors(textTyped, textToCopy)} />}
     </div>
   );
 }
