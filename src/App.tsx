@@ -5,7 +5,7 @@ import useInterval from './useInterval';
 import { TextField } from './Components/TextField';
 import { Box } from './Components/Box';
 import { Result } from './Components/Result';
-import { formatTime, numberOfWords, numberOfErrors } from './helpers';
+import { formatTime, numberOfWords, numberOfErrors, formatText } from './helpers';
 
 function App() {
   const endpoint = "https://litipsum.com/api/5";
@@ -26,7 +26,7 @@ function App() {
   function getText() {
     axios.get(endpoint)
       .then(response => 
-        setTextToCopy(response.data)
+        setTextToCopy(formatText(response.data))
       )
   }
 

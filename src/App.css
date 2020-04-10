@@ -49,6 +49,7 @@
 }
 
 .text-to-copy {
+  flex: 1;
   max-height: 120px;
   overflow-y: scroll;
   margin: 15px 0;

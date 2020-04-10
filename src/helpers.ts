@@ -9,3 +9,7 @@ export function numberOfWords(text: string) {
 export function numberOfErrors(typed: string, toCopy: string) {
   return typed.split(" ").filter((word: string, index: number) => word !== "" && word !== toCopy.split(" ")[index]).length;
 }
+
+export function formatText(text: string) {
+  return text.replace(/ {2}/g, ' ').replace(/“”/g, '"').replace(/’/g, "'");
+}
