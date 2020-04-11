@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import useInterval from './useInterval';
+import { TextToCopy } from './Components/TextToCopy';
 import { TextField } from './Components/TextField';
 import { Box } from './Components/Box';
 import { Result } from './Components/Result';
@@ -45,9 +46,7 @@ function App() {
         <Box>Errors: {numberOfErrors(textTyped, textToCopy)}</Box>
       </div>
       <div className="text-container">
-        <div className="text-to-copy">{textToCopy.split(" ").map((word: string, index: number) => (
-          <span key={index} style={{ color: index === textTyped.split(" ").length - 1 ? 'green' : textTyped.split(" ")[index] === word ? 'grey' : 'black'}}> {word}</span>
-        ))}</div>
+        <TextToCopy textToCopy={textToCopy} textTyped={textTyped} />
         <TextField onChange={type} />
       </div>
       {showResult && <Result words={numberOfWords(textTyped)} errors={numberOfErrors(textTyped, textToCopy)} />}
