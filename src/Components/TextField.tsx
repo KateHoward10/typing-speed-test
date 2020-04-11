@@ -1,12 +1,13 @@
 import React from "react";
 
 interface Props {
-  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void,
+  textTyped: string
 }
 
-export const TextField: React.FC<Props> = ({ onChange }) => {
+export const TextField: React.FC<Props> = ({ onChange, textTyped }) => {
 
   return (
-    <textarea onChange={onChange} placeholder="Start typing to begin..." autoFocus />
+    <textarea onChange={onChange} value={textTyped} placeholder="Start typing to begin..." autoFocus />
   )
 }

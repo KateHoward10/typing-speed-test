@@ -36,6 +36,13 @@ function App() {
     if (timing) setTextTyped(e.target.value);
   }
 
+  function restart() {
+    setTextTyped("");
+    setTime(60);
+    toggleShowResult(false);
+    getText();
+  }
+
   useEffect(getText, []);
 
   return (
@@ -47,9 +54,9 @@ function App() {
       </div>
       <div className="text-container">
         <TextToCopy textToCopy={textToCopy} textTyped={textTyped} />
-        <TextField onChange={type} />
+        <TextField onChange={type} textTyped={textTyped} />
       </div>
-      {showResult && <Result words={numberOfWords(textTyped)} errors={numberOfErrors(textTyped, textToCopy)} />}
+      {showResult && <Result words={numberOfWords(textTyped)} errors={numberOfErrors(textTyped, textToCopy)} restart={restart} />}
     </div>
   );
 }
