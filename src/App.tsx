@@ -46,18 +46,22 @@ function App() {
   useEffect(getText, []);
 
   return (
-    <div className="wrapper">
-      <div className="box-container">
-        <Box time>{formatTime(time)}</Box>
-        <Box>Words: {numberOfWords(textTyped)}</Box>
-        <Box>Errors: {numberOfErrors(textTyped, textToCopy)}</Box>
+    <>
+      <h1>Typing Speed Test</h1>
+      <div className="wrapper">
+        <div className="box-container">
+          <Box time>{formatTime(time)}</Box>
+          <Box>Words: {numberOfWords(textTyped)}</Box>
+          <Box>Errors: {numberOfErrors(textTyped, textToCopy)}</Box>
+        </div>
+        <div className="text-container">
+          <TextToCopy textToCopy={textToCopy} textTyped={textTyped} />
+          <TextField onChange={type} textTyped={textTyped} />
+        </div>
+        {showResult && <Result words={numberOfWords(textTyped)} errors={numberOfErrors(textTyped, textToCopy)} restart={restart} />}
       </div>
-      <div className="text-container">
-        <TextToCopy textToCopy={textToCopy} textTyped={textTyped} />
-        <TextField onChange={type} textTyped={textTyped} />
-      </div>
-      {showResult && <Result words={numberOfWords(textTyped)} errors={numberOfErrors(textTyped, textToCopy)} restart={restart} />}
-    </div>
+      <div className="credit">Text extracts from <a href="https://litipsum.com/">Lit Ipsum</a></div>
+    </>
   );
 }
 
