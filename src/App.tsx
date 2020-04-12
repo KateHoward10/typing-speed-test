@@ -51,8 +51,9 @@ function App() {
       <div className="wrapper">
         <div className="box-container">
           <Box time>{formatTime(time)}</Box>
-          <Box>Words: {numberOfWords(textTyped)}</Box>
-          <Box>Errors: {numberOfErrors(textTyped, textToCopy)}</Box>
+          <Box label="Words">{numberOfWords(textTyped)}</Box>
+          <Box label="Errors" error>{numberOfErrors(textTyped, textToCopy)}</Box>
+          <button className="cancel-button" onClick={restart}>New text</button>
         </div>
         <div className="text-container">
           <TextToCopy textToCopy={textToCopy} textTyped={textTyped} />
