@@ -14,6 +14,10 @@ h1 {
   margin-bottom: 0;
 }
 
+svg {
+  vertical-align: bottom;
+}
+
 .wrapper {
   text-align: center;
   padding: var(--xlarge);
@@ -119,6 +123,9 @@ textarea:focus {
   padding: 20px;
   border-radius: 5px;
   min-width: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 button {
@@ -156,6 +163,40 @@ button:hover {
 
 .credit > a {
   color: #FFF;
+}
+
+.result-chart {
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(to right, orange, yellow, green);
+  margin: 0 auto;
+  position: relative;
+}
+
+.marker {
+  width: 1px;
+  height: 40px;
+  background-color: grey;
+  position: absolute;
+  top: 0;
+}
+
+.result-marker {
+  width: 2px;
+  background-color: #000;
+}
+
+.chart-labels {
+  display: flex;
+  width: 240px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  font-size: var(--small);
 }
 
 @media screen and (min-width: 700px) {
