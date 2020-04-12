@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 interface Props {
-  textToCopy: string,
+  textToCopy : string,
   textTyped: string
 }
 
@@ -20,10 +20,10 @@ export const TextToCopy: React.FC<Props> = ({ textToCopy, textTyped }) => {
     }, [textTyped])
 
   return (
-    <div ref={containerRef} className="text-to-copy">{textToCopy.split(" ").map((word: string, index: number) => index === textTyped.split(" ").length - 1 ? (
+    <div ref={containerRef} className="text-to-copy">{textToCopy.length > 0 ? textToCopy.split(" ").map((word: string, index: number) => index === textTyped.split(" ").length - 1 ? (
         <span key={index} style={{ color: 'green' }}> {word}</span>
     ) : (
       <span key={index} style={{ color: textTyped.split(" ")[index] === word ? 'grey' : 'black'}}> {word}</span>
-    ))}</div>
+    )) : "Loading text..."}</div>
   )
 }
