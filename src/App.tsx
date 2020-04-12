@@ -7,6 +7,7 @@ import { TextField } from './Components/TextField';
 import { Box } from './Components/Box';
 import { Result } from './Components/Result';
 import { formatTime, numberOfWords, numberOfErrors, formatText } from './helpers';
+import { FaHistory } from "react-icons/fa";
 
 function App() {
   const endpoint = "https://litipsum.com/api/5";
@@ -53,7 +54,7 @@ function App() {
           <Box time>{formatTime(time)}</Box>
           <Box label="Words">{numberOfWords(textTyped)}</Box>
           <Box label="Errors" error>{numberOfErrors(textTyped, textToCopy)}</Box>
-          <button className="cancel-button" onClick={restart}>New text</button>
+          <button className="cancel-button" onClick={restart}>{window?.innerWidth > 700 ? "New text" : <FaHistory />}</button>
         </div>
         <div className="text-container">
           <TextToCopy textToCopy={textToCopy} textTyped={textTyped} />
