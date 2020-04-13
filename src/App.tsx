@@ -34,7 +34,7 @@ function App() {
 
   function type(e: any) {
     if (textTyped === "") toggleTiming(true);
-    if (timing) setTextTyped(e.target.value);
+    if (time !== 0) setTextTyped(e.target.value);
   }
 
   function restart() {
