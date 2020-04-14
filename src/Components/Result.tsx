@@ -1,5 +1,5 @@
 import React from "react";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaWalking, FaBicycle, FaTractor, FaCarSide, FaPlane } from "react-icons/fa";
 
 interface Props {
   words: number,
@@ -18,8 +18,12 @@ export const Result: React.FC<Props> = ({ words, errors, restart }) => {
         <p>{words} words typed <FaTimes /> {Math.floor(accuracy * 100)}% accuracy</p>
         <h3>Adjusted speed: {speed} WPM</h3>
         <div className="result-chart">
-          {labels.map(number => <div className="marker" style={{ left: `${number * 3}px` }} />)}
-          <div className="marker result-marker" style={{ left: `${speed * 3}px` }} />
+          <div className="icon-container"><FaWalking /></div>
+          <div className="icon-container"><FaBicycle /></div>
+          <div className="icon-container"><FaTractor /></div>
+          <div className="icon-container"><FaCarSide /></div>
+          <div className="icon-container"><FaPlane /></div>
+          <div className="result-marker" style={{ left: `${speed * 3}px` }} />
         </div>
         <div className="chart-labels">
           {labels.map(number => <span>{number}</span>)}
