@@ -12,5 +12,5 @@ export function numberOfErrors(typed: string, toCopy: string) {
 }
 
 export function formatText(text: string) {
-  return text.replace(/ {2}/g, ' ').replace(/“|”/g, '"').replace(/’/g, "'");
+  return text.replace(/ {2}/g, ' ').replace(/“|”/g, '"').replace(/’/g, "'").replace(/$(\r|\n{2})(?=.)/gm, " ");
 }
