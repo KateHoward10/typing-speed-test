@@ -5,9 +5,10 @@ interface Props {
   textTyped: string
 }
 
-export const TextField: React.FC<Props> = ({ onChange, textTyped }) => {
-
+export const TextField = React.forwardRef<HTMLTextAreaElement, Props>((props, ref) => {
+  const { onChange, textTyped } = props;
+  
   return (
-    <textarea onChange={onChange} value={textTyped} placeholder="Start typing to begin..." autoFocus />
+    <textarea ref={ref} onChange={onChange} value={textTyped} placeholder="Start typing to begin..." autoFocus />
   )
-}
+});

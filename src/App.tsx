@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 import useInterval from './useInterval';
@@ -16,6 +16,7 @@ function App() {
   const [timing, toggleTiming] = useState<boolean>(false);
   const [time, setTime] = useState<number>(60);
   const [showResult, toggleShowResult] = useState<boolean>(false);
+  let textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useInterval(() => {
     setTime(time - 1);
@@ -42,6 +43,7 @@ function App() {
     setTime(60);
     toggleShowResult(false);
     getText();
+    if (textareaRef?.current) textareaRef.current.focus();
   }
 
   useEffect(getText, []);
@@ -58,7 +60,7 @@ function App() {
         </div>
         <div className="text-container">
           <TextToCopy textToCopy={textToCopy} textTyped={textTyped} />
-          <TextField onChange={type} textTyped={textTyped} />
+          <TextField ref={textareaRef} onChange={type} textTyped={textTyped} />
         </div>
         {showResult && <Result words={numberOfWords(textTyped)} errors={numberOfErrors(textTyped, textToCopy)} restart={restart} />}
       </div>
