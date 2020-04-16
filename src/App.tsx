@@ -7,7 +7,7 @@ import { TextField } from './Components/TextField';
 import { Box } from './Components/Box';
 import { Result } from './Components/Result';
 import { formatTime, numberOfWords, numberOfErrors, formatText } from './helpers';
-import { FaHistory } from "react-icons/fa";
+import { FaKeyboard, FaHistory } from "react-icons/fa";
 
 function App() {
   const endpoint = "https://litipsum.com/api/5";
@@ -51,6 +51,7 @@ function App() {
   return (
     <>
       <h1>Typing Speed Test</h1>
+      <p className="instructions"><FaKeyboard /> Copy passages from classic works of literature to find your average words per minute.</p>
       <div className="wrapper">
         <div className="box-container">
           <Box time>{formatTime(time)}</Box>
