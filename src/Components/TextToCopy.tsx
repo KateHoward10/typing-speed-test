@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
+import { getPropertyValue } from '../helpers';
 
 interface Props {
   textToCopy : string,
@@ -13,17 +14,21 @@ export const TextToCopy: React.FC<Props> = ({ textToCopy, textTyped }) => {
       const lastWord = container?.children?.[textTyped.split(" ").length - 1];
       if (container && lastWord instanceof HTMLElement) {
         const lastWordOffset = lastWord?.offsetTop;
-        if (lastWordOffset - 10 !== container?.scrollTop) {
-          container.scroll({ top: lastWordOffset - 10, left: 0, behavior: 'smooth' });
+        const padding = getPropertyValue(container, 'paddingTop');
+        const lineHeight = getPropertyValue(container, 'lineHeight');
+        if (lastWordOffset + padding + lineHeight > container?.scrollTop + container?.clientHeight) {
+          container.scroll({ top: lastWordOffset - padding, left: 0, behavior: 'smooth' });
         }
       }
     }, [textTyped])
 
   return (
-    <div ref={containerRef} className="text-to-copy">{textToCopy.length > 0 ? textToCopy.split(" ").map((word: string, index: number) => index === textTyped.split(" ").length - 1 ? (
+    <div ref={containerRef} className="text-to-copy">
+      {textToCopy.length > 0 ? textToCopy.split(" ").map((word: string, index: number) => index === textTyped.split(" ").length - 1 ? (
         <span key={index} style={{ color: 'green' }}> {word}</span>
-    ) : (
-      <span key={index} style={{ color: textTyped.split(" ")[index] === word ? 'grey' : 'black'}}> {word}</span>
-    )) : "Loading text..."}</div>
+      ) : (
+        <span key={index} style={{ color: textTyped.split(" ")[index] === word ? 'grey' : 'black'}}> {word}</span>
+      )) : "Loading text..."}
+    </div>
   )
 }
