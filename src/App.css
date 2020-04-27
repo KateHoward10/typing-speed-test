@@ -138,6 +138,14 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
 
 button {
@@ -153,6 +161,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 button:hover {
@@ -173,7 +182,7 @@ button:hover {
   width: 100%;
 }
 
-.credit > a {
+.credit a {
   color: #FFF;
 }
 
@@ -183,6 +192,16 @@ button:hover {
   align-items: center;
   justify-content: space-around;
   width: 100%;
+}
+
+.result-box {
+  border-radius: 5px;
+  box-shadow: inset 0 0 10px lightgrey;
+  padding: 10px;
+}
+
+.result-box p {
+  margin: 0;
 }
 
 .result-chart {

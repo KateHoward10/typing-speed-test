@@ -63,7 +63,7 @@ function App() {
           <TextToCopy textToCopy={textToCopy} textTyped={textTyped} />
           <TextField ref={textareaRef} onChange={type} textTyped={textTyped} />
         </div>
-        {showResult && <Result textTyped={textTyped} errors={numberOfErrors(textTyped, textToCopy)} restart={restart} />}
+        {showResult && <Result textTyped={textTyped} errors={numberOfErrors(textTyped, textToCopy)} restart={restart} close={() => toggleShowResult(false)} />}
       </div>
       <div className="credit">Text extracts from <a href="https://litipsum.com/">Lit Ipsum</a></div>
     </>

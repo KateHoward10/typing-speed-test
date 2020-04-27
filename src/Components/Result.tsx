@@ -5,10 +5,11 @@ import { FaTimes, FaWalking, FaBicycle, FaTractor, FaCarSide, FaPlane } from "re
 interface Props {
   textTyped: string,
   errors: number,
-  restart: () => void
+  restart: () => void,
+  close: () => void
 }
 
-export const Result: React.FC<Props> = ({ textTyped, errors, restart }) => {
+export const Result: React.FC<Props> = ({ textTyped, errors, restart, close }) => {
   const words = numberOfWords(textTyped);
   const accuracy = (words - errors) / words;
   const speed = Math.floor(words * accuracy);
@@ -17,13 +18,13 @@ export const Result: React.FC<Props> = ({ textTyped, errors, restart }) => {
   return (
     <div className="overlay">
       <div className="modal">
+        <div onClick={close} className="close-button"><FaTimes /></div>
         <div className="results-wrapper">
-          <div>
+          <div className="result-box">
             <p>{words} words typed</p>
             <small>{textTyped.length} characters</small>
           </div>
-          <FaTimes />
-          <div>
+          <div className="result-box">
             <p>{Math.floor(accuracy * 100)}% accuracy</p>
             <small>{errors} errors</small>
           </div>
