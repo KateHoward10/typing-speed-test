@@ -17,8 +17,17 @@ export const Result: React.FC<Props> = ({ textTyped, errors, restart }) => {
   return (
     <div className="overlay">
       <div className="modal">
-        <p>{words} words typed <FaTimes /> {Math.floor(accuracy * 100)}% accuracy</p>
-        <small>{textTyped.length} characters, {errors} errors</small>
+        <div className="results-wrapper">
+          <div>
+            <p>{words} words typed</p>
+            <small>{textTyped.length} characters</small>
+          </div>
+          <FaTimes />
+          <div>
+            <p>{Math.floor(accuracy * 100)}% accuracy</p>
+            <small>{errors} errors</small>
+          </div>
+        </div>
         <h3>Adjusted speed: {speed} WPM</h3>
         <div className="result-chart">
           <div className="icon-container"><FaWalking /></div>

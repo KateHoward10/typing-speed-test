@@ -3,7 +3,8 @@ body {
   font-family: 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: hsl(136, 40%, 90%);
+  background-color: hsl(136, 60%, 90%);
+  margin-bottom: 30px;
 }
 
 code {
