@@ -12,6 +12,7 @@ export const TextToCopy: React.FC<Props> = ({ textToCopy, textTyped }) => {
     useEffect(() => {
       const container = containerRef?.current;
       const lastWord = container?.children?.[textTyped.split(" ").length - 1];
+      if (textTyped === "") container?.scroll({ top: 0, left: 0, behavior: 'smooth' });
       if (container && lastWord instanceof HTMLElement) {
         const lastWordOffset = lastWord?.offsetTop;
         const padding = getPropertyValue(container, 'paddingTop');
