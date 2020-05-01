@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "98472c95a8d94092032350f924e52a64",
+    "revision": "9b13324b10276125311d7b93b2ae57fa",
     "url": "/typing-speed-test/index.html"
   },
   {
