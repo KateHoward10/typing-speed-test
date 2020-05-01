@@ -21,12 +21,12 @@ export const Result: React.FC<Props> = ({ textTyped, errors, restart, close }) =
         <div onClick={close} className="close-button"><FaTimes /></div>
         <div className="results-wrapper">
           <div className="result-box">
-            <p>{words} words typed</p>
-            <small>{textTyped.length} characters</small>
+            <p>{words} word{words > 1 && "s"} typed</p>
+            <small>{textTyped.length} character{textTyped.length > 1 && "s"}</small>
           </div>
           <div className="result-box">
             <p>{Math.floor(accuracy * 100)}% accuracy</p>
-            <small>{errors} errors</small>
+            <small>{errors} error{errors > 1 && "s"}</small>
           </div>
         </div>
         <h3>Adjusted speed: {speed} WPM</h3>
