@@ -33,7 +33,7 @@ function App() {
       )
   }
 
-  function type(e: any) {
+  function type(e: React.ChangeEvent<HTMLTextAreaElement>) {
     if (textTyped === "") toggleTiming(true);
     if (time !== 0) setTextTyped(e.target.value);
   }
